@@ -1,0 +1,61 @@
+{
+  "name": "vanilla-js-spa",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A demo for a Vanilla JavaScript Single Page Application",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "assets": "mkdir -p dist && cp -a ./public/. ./dist/ && cp -a ./src/assets/. ./dist/",
+    "prebuild": "npm run clean && npm run assets",
+    "build": "rollup -c rollup.config.js",
+    "postbuild": "bash -c 'mv -f ./dist/*.{js,map} ./dist/js'",
+    "build:watch": "rollup -c rollup.config.js -w",
+    "dev": "npx browser-sync start -s \"dist\" --files \"dist/*.*\"  --single"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/phun-ky/vanilla-js-spa.git"
+  },
+  "keywords": [
+    "how-to",
+    "app",
+    "javascript",
+    "rollup",
+    "nodejs",
+    "npm",
+    "github",
+    "spa",
+    "single-spa",
+    "ts",
+    "typescript",
+    "js"
+  ],
+  "author": "Alexander Vassbotn Røyne-Helgesen <alexander+github.com@phun-ky.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phun-ky/vanilla-js-spa/issues"
+  },
+  "homepage": "https://github.com/phun-ky/vanilla-js-spa#readme",
+  "devDependencies": {
+    "@ironkinoko/rollup-plugin-styles": "^4.0.3",
+    "@rollup/plugin-commonjs": "^25.0.5",
+    "@rollup/plugin-node-resolve": "^15.2.2",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "rollup": "^3.29.4",
+    "rollup-plugin-dts": "^6.0.2",
+    "rollup-plugin-node-externals": "^6.1.1",
+    "rollup-plugin-svg-import": "^2.1.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "stylus": "^0.60.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "diff-dom": "^5.0.7"
+  }
+}
