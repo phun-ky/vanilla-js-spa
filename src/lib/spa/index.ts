@@ -34,6 +34,7 @@ export const spa = (() => {
 
   let _templateCallback;
   let _page;
+  let inputEventArray: EventArray<EventDataId> = [];
   let clickEventArray: EventArray<EventDataId> = [];
   let onRouteChangeEventArray: EventArray<EventDataId> = [];
   let onAfterAppRenderEventArray: EventArray<EventDataId> = [];
@@ -74,6 +75,7 @@ export const spa = (() => {
 
     console.info(`trying to render "${page?.route?.name}"`);
     clickEventArray = [];
+    inputEventArray = [];
     onRouteChangeEventArray = [];
     onAfterAppRenderEventArray = [];
     // reset state indexes
@@ -183,6 +185,9 @@ export const spa = (() => {
 
     document.removeEventListener('click', handleClickListeners);
     document.addEventListener('click', handleClickListeners);
+
+    document.removeEventListener('input', handleInputListeners);
+    document.addEventListener('input', handleInputListeners);
   };
   const handleAfterAppRenderListeners = () => {
     onAfterAppRenderEventArray.forEach((callback: EventDataAction) => {
@@ -201,6 +206,14 @@ export const spa = (() => {
       }
     });
   };
+  const handleInputListeners = (e: EventType<HTMLElement>) => {
+    inputEventArray.forEach((target: EventDataId) => {
+      if (e.target.id === target.id) {
+        e.preventDefault();
+        target.callback(e);
+      }
+    });
+  };
   /**
    * To be able to add event listeners to the "string html" produced by the
    * components, we have to use "global" event handlers.
@@ -212,6 +225,10 @@ export const spa = (() => {
   // eslint-disable-next-line no-unused-vars
   const addOnClick = (id: string, callback: FunctionType) => {
     clickEventArray.push({ id, callback });
+  };
+  // eslint-disable-next-line no-unused-vars
+  const addOnInput = (id: string, callback: FunctionType) => {
+    inputEventArray.push({ id, callback });
   };
   const addOnRouteChange = (callback: FunctionType) => {
     onRouteChangeEventArray.push(callback);
@@ -279,6 +296,7 @@ export const spa = (() => {
   return {
     addOnClick,
     addOnRouteChange,
+    addOnInput,
     addOnAfterAppRender,
     useEffect,
     useState,
@@ -290,6 +308,7 @@ export const spa = (() => {
 export const {
   addOnClick,
   addOnRouteChange,
+  addOnInput,
   addOnAfterAppRender,
   useEffect,
   useState,

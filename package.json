@@ -37,6 +37,9 @@
     "url": "https://github.com/phun-ky/vanilla-js-spa/issues"
   },
   "homepage": "https://github.com/phun-ky/vanilla-js-spa#readme",
+  "dependencies": {
+    "diff-dom": "^5.0.7"
+  },
   "devDependencies": {
     "@ironkinoko/rollup-plugin-styles": "^4.0.3",
     "@rollup/plugin-commonjs": "^25.0.5",
@@ -46,16 +49,12 @@
     "postcss-cli": "^10.1.0",
     "rollup": "^3.29.4",
     "rollup-plugin-dts": "^6.0.2",
-    "rollup-plugin-node-externals": "^6.1.1",
-    "rollup-plugin-svg-import": "^2.1.0",
+    "rollup-plugin-node-externals": "^6.1.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "stylus": "^0.60.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "diff-dom": "^5.0.7"
   }
 }
